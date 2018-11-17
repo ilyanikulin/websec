@@ -1,0 +1,13 @@
+.data-container{
+  display: grid;
+  grid-template-columns: 30% auto;
+}
+.border{
+  border: 2px solid black;
+}
+.filter-container{
+  grid-column: 1;
+}
+.table-container{
+  grid-column: 2;
+}

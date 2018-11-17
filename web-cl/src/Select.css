@@ -1,0 +1,23 @@
+
+.choose-it:hover{
+    background: gray;
+    cursor: pointer;
+}
+select{
+    margin-right: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    max-width: 265px;
+    height: 22px;
+    font-size:15px;
+    border: 0;
+}
+.button-dialog{
+    height:30px;
+    width:8%;
+    background: #ffffff;
+}
+.button-dialog:hover{
+    cursor: pointer;
+    background: #afafaf;
+}

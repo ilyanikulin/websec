@@ -1,0 +1,40 @@
+
+.dialog{
+    width: 242px;
+    border-radius: 5px;
+    border: .2px solid rgba(128, 128, 128, 0.432);
+    z-index: 1200;
+    display: -webkit-flex; 
+    display: flex;
+    flex-direction: column;
+}
+.choose-it:hover{
+    background: gray;
+    cursor: pointer;
+}
+.input-field{
+    display: inline-flex;
+    display:-webkit-inline-flex;
+    align-items: center;
+    
+    height: 30px;
+    background: #ffffff;
+}
+input{
+    margin-right: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    width: 265px;
+    height: 22px;
+    font-size:15px;
+    border: 0;
+}
+.button-dialog{
+    height:30px;
+    width:8%;
+    background: #aaaaaa;
+}
+.button-dialog:hover{
+    cursor: pointer;
+    background: #afafaf;
+}

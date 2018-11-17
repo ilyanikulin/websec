@@ -1,0 +1,72 @@
+
+table{
+    -webkit-border-horizontal-spacing: .1px;
+    -webkit-border-vertical-spacing: 1px;
+    
+}
+th, td {border-bottom: .1px solid none}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+.field{
+    font-size: 14px;
+}
+.field-id{
+    width:15%;
+    font-weight: 500;
+    font-size: 19px;
+    color: #5cb85c;
+}
+.field-two{
+    text-align: left;
+}
+.field-three{
+    text-align: rigth;
+    width:15%;
+    font-weight: 500;
+    color: #888888;
+}
+.field-four{
+    width:5%;
+}
+.table-container{
+    width: 80%;
+    margin-left:17px;
+    padding:15px 0 15px 0;
+    border-color: gray;
+}
+.table-head .field{
+    font-weight: bold;
+    font-size: 13px;
+    top: 5px;
+}
+.name-danger{
+    padding-left:8px;
+    margin-top: 5px;
+    color: rgba(0, 0, 0, 0.719);
+    font-size:15px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+.os-danger{
+    font-weight: 300;
+    color: #888888;
+    line-height: 1.42857143;
+    padding: 8px;
+}
+.remove-button{
+    max-width:100%;
+    height: 100px;
+    background: rgba(243, 92, 92, 0.781);
+    visibility: hidden;
+}
+.row:hover .remove-button{
+    cursor: pointer;
+    visibility: visible;
+    
+}
+.remove-button:hover{
+    background: rgba(241, 50, 50, 0.781);
+}
+.remove-button:checked{
+    background: rgba(50, 241, 50, 0.781);
+}

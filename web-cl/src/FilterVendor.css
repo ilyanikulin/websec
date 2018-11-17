@@ -1,0 +1,24 @@
+.filter-vendor{
+    z-index: 1000;
+}
+.vendor-dialog{
+    width: 242px;
+    border-radius: 5px;
+    border: .2px solid rgba(128, 128, 128, 0.432);
+    z-index: 1200;
+    display: -webkit-flex; 
+    display: flex;
+    flex-direction: column;
+}
+.choose-vendor:hover{
+    background: gray;
+    cursor: pointer;
+}
+.input-vendor{
+    margin: 5px; 
+    border-radius: 4px;
+    width: 78%;
+    height: 22px;
+    font-size:15px;
+    border: 0;
+}
