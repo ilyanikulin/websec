@@ -38,3 +38,6 @@ input{
     cursor: pointer;
     background: #afafaf;
 }
+.label-type{
+    max-width: 300px;
+}

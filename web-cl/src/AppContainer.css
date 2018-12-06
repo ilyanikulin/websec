@@ -1,0 +1,19 @@
+.logField{
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    border-radius: 2px;
+    box-shadow: 0 0  2px black;
+    padding:2px;
+    text-align: center;
+
+}
+.user-Field{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.button-logout:hover{
+    color: grey;
+    cursor: pointer;
+}

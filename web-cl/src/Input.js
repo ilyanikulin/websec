@@ -45,7 +45,7 @@ export default class Input extends Component {
 
         return (
             <div className="filter-input filter-item">
-                <label htmlFor="input" className="label-type">{this.props.filterName}</label><br/>  
+                <div  className="label-type">{this.props.filterName}</div> 
                 <div className="input-field"><input ref="input" className="input filter" placeholder={this.props.placeholder} onChange={this.holderChange}/><div className="button-dialog" onClick={
                     ()=>{this.refs.input.value = '';
                     this.select();

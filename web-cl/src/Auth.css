@@ -1,4 +1,4 @@
-/* .auth-container{
+.auth-container{
    
     position: absolute;
     top: 50%;
@@ -38,4 +38,4 @@
 .auth-accept:hover{
     cursor: pointer;
     box-shadow: 0 0px 5px 0px rgba(134, 134, 134, 0.438);
-} */
+}

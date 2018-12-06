@@ -1,8 +1,7 @@
 //подключаем модули:
 import React, { Component } from 'react' // реакт
 import './App.css' //стили 
-import Table from './Table' //компонент таблицы
-import Filter from './Filter' //компонент панели фильтрации
+import AppContainer from './AppContainer' ;
 import Auth from './Auth' //компонент аутентификации
 
 class App extends Component {
@@ -10,21 +9,21 @@ class App extends Component {
     super(...arguments)
     this.state = {  //состояния, в котором храняться данные
       data: [],
-      token: null
+      auth: false,
+      user: null,
+      pass: null
     }
   } 
   // функция, которая будет выполняться перед отрисовкой компонента
   componentWillMount () { 
-    // this.login('test1','133');
-    this.getData() //функция получение данных и записи их в состояние
-    // if(this.state.token && this.state.token !==null){
-    //   this.getData();
-    // }
+    if(this.state.auth){
+      this.getData(); //функция получение данных и записи их в состояние
+    }   
   }
 
   //функция для аутентификации (TODO)
-  login = (user, pass) => { 
-    fetch(`http://localhost:4000/signin`, {
+  login = async (user, pass) => { 
+    await fetch(`http://localhost:4000/signin`, {
       method: 'POST',
       body: JSON.stringify({ login: user, password: pass }),
       headers: {
@@ -33,20 +32,26 @@ class App extends Component {
       credentials: 'same-origin'
     })
       .then(response => response.json())
-      .then(response => this.setState({ token: response }))
-    this.getData()
+      .then(response => this.setState({auth:true, user: user, pass: pass}))
+      .then(()=>this.getData())
+      .catch(err=>this.setState({auth:false, user:null, pass: null}));
+  }
+
+  logout = () => {
+    this.setState({
+      auth: false,
+      user: null,
+      pass:null
+    });
   }
   //функция для получения данных
-  getData = filterParams => {
+  getData = ( filterParams) => {
     //отправляем запрос на web-server
     fetch(`http://localhost:4000/`, {
       method: 'POST', //методом post
-      //даные в теле запроса
-      //Либо запрос отправляется пустой без параметров, либо с ними
+      //даные в теле запроса:
       body: JSON.stringify( 
-        { params: filterParams, token: this.state.token } || {
-          token: this.state.token
-        }
+        { params: filterParams, user: this.state.user, pass: this.state.pass }
       ),
       headers: {
         'Content-Type': 'application/json'
@@ -60,19 +65,16 @@ class App extends Component {
 
   //функция отрисовки компонента приложения
   render () {
-    let table;
-    (this.state.data!==undefined && this.state.data.length!==0 )? table=<Table  data={this.state.data}/> : {}
+    
     let auth = <Auth auth={this.login} />
     let content = (
-      <div className='data-container'>
-        <Filter data={this.state.data} filter={this.getData} />
-        {table}
-      </div>
-    )
+      <AppContainer data={this.state.data} filter={this.getData} login={this.state.user} logout={this.logout}/>
+        
+      )
+    
     return (
       <div className='App'>
-        {content}
-        {/* {this.state.token !== null? content : auth} */}
+        {this.state.auth ? content : auth}
       </div>
     )
   }
