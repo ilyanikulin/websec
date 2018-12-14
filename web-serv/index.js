@@ -9,6 +9,7 @@ app.use(bodyParser.json()) ;// парсинг данных адекватный
 app.listen(4000); // запускаем наш веб сервис на 4000 порту
 
 const table = 'test1' // имя таблицы в бд
+const address = '192.168.10.133';
 var pool; // объект для подключения к бд
 
 
@@ -19,7 +20,7 @@ app.post('/signin',  function (request, response) {
   const password = request.body.password
 
   pool = new pg.Pool({
-    connectionString: `postgres://${login}:${password}@10.0.0.100/test1`
+    connectionString: `postgres://${login}:${password}@${address}/test1`
   });
    pool.connect(function(err,client,done){
     done();
@@ -35,14 +36,13 @@ app.post('/signin',  function (request, response) {
 
 // Получение данных
 app.post('/', function (request, response) {
-  console.log(pool);
   const user = request.body.user;
   const pass = request.body.pass;
   const filterParams = request.body.params
   var pool;
   if(user && pass){
     pool = new pg.Pool({
-      connectionString: `postgres://${user}:${pass}@10.0.0.100/test1`
+      connectionString: `postgres://${user}:${pass}@${address}/test1`
     });
 
   }
