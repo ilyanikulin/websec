@@ -1,8 +1,8 @@
 //подключаем модули:
 import React, { Component } from 'react' // реакт
 import './App.css' //стили 
-import AppContainer from './AppContainer' ;
-import Auth from './Auth' //компонент аутентификации
+import AppContainer from './Components/AppContainer' ;
+import Auth from './Components/Auth' //компонент аутентификации
 
 class App extends Component {
   constructor () { 
@@ -23,7 +23,7 @@ class App extends Component {
 
   //функция для аутентификации (TODO)
   login = async (user, pass) => { 
-    await fetch(`http://localhost:4000/signin`, {
+    await fetch(`http://192.168.10.1:4000/signin`, {
       method: 'POST',
       body: JSON.stringify({ login: user, password: pass }),
       headers: {
@@ -47,7 +47,7 @@ class App extends Component {
   //функция для получения данных
   getData = ( filterParams) => {
     //отправляем запрос на web-server
-    fetch(`http://localhost:4000/`, {
+    fetch(`http://192.168.10.1:4000/`, {
       method: 'POST', //методом post
       //даные в теле запроса:
       body: JSON.stringify( 

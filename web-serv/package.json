@@ -20,7 +20,9 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
