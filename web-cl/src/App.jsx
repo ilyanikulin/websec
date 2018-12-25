@@ -32,9 +32,10 @@ class App extends Component {
       credentials: 'same-origin'
     })
       .then(response => response.json())
-      .then(response => this.setState({auth:true, user: user, pass: pass}))
+      .then(() => this.setState({auth:true, user: user, pass: pass}))
       .then(()=>this.getData())
-      .catch(err=>this.setState({auth:false, user:null, pass: null}));
+      .catch(()=>this.setState({auth:false, user:null, pass: null}));
+      
   }
 
   logout = () => {

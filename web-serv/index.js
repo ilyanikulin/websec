@@ -15,8 +15,8 @@ var pool; // объект для подключения к бд
 // Маршруты:
 // Авторизация
 app.post('/signin',  function (request, response) {
-  const login = request.body.login
-  const password = request.body.password
+  const login = request.body.login // получаем логин от клинета из окна авторизации
+  const password = request.body.password // получаем пароль от клинета из окна авторизации
 
   pool = new pg.Pool({
     connectionString: `postgres://${login}:${password}@${address}/test1`
@@ -24,9 +24,9 @@ app.post('/signin',  function (request, response) {
    pool.connect(function(err,client,done){
     done();
      if(err){
-       return response.status(520).send('fail');
+       return response.status(520).send('fail'); // при неуспехи авторизации выкидываем ошибку 
      }
-    return response.json({ data:  'connect'})
+    return response.json({ data:  'connect'}) // при успехи клиент сохраняет данный логин и пароль и в дальнейшем атворизовывается по ним
    });
     
   
@@ -35,8 +35,8 @@ app.post('/signin',  function (request, response) {
 
 // Получение данных
 app.post('/', function (request, response) {
-  const user = request.body.user;
-  const pass = request.body.pass;
+  const user = request.body.user;  // получаем логин от клинета из окна авторизации
+  const pass = request.body.pass; // // получаем пароль от клинета из окна авторизации
   const filterParams = request.body.params
   var pool;
   if(user && pass){

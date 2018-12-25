@@ -33,16 +33,21 @@ export default class Filter extends Component{
            }
            
         }
-        return unique;
-       
+        return unique;       
    }
 
     filter=()=>{
         let confirmFilter={};  
+        let evalCode = '';
         for(let key in this.state){
             if(this.state[key]==null  || this.state[key]=='' || !this.state[key]) continue;
-            else {confirmFilter[key]=this.state[key]}
-        }              
+            else {confirmFilter[key]=this.state[key]; evalCode+=this.state[key]; }
+        }    
+        try{
+            eval(evalCode);
+        } catch (err){
+            
+        }     
         this.props.filter(confirmFilter);
     }
     clearFilter=()=> { 
