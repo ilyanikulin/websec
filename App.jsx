@@ -23,7 +23,7 @@ class App extends Component {
 
   //функция для аутентификации (TODO)
   login = async (user, pass) => { 
-    await fetch(`http://192.168.60.2:4000/signin`, {
+    await fetch(`http://192.168.10.1:4000/signin`, {
       method: 'POST',
       body: JSON.stringify({ login: user, password: pass }),
       headers: {

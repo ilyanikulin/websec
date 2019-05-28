@@ -1,57 +1,57 @@
 const express = require('express');
-const pg = require('pg');
 const cors = require('cors');
-var bodyParser = require('body-parser');
+const pg = require('pg');
+const routing = require('./modules/routing');
 
+const bodyParser = require('body-parser');
 const app = express(); // для поднятия веб-сервиса
+
 app.use(cors());
-app.use(bodyParser.json()) ;// парсинг данных адекватный
+app.use(bodyParser.json())
+app.use(express.json()) ;// парсинг данных адекватный
+
 app.listen(4000); // запускаем наш веб сервис на 4000 порту
 
 const table = 'test1' // имя таблицы в бд
-const address = '192.168.10.141';
-var pool; // объект для подключения к бд
+const address = '10.0.30.2';
 
 // Маршруты:
 // Авторизация
-app.post('/signin',  function (request, response) {
-  const login = request.body.login // получаем логин от клинета из окна авторизации
-  const password = request.body.password // получаем пароль от клинета из окна авторизации
-
-  pool = new pg.Pool({
-    connectionString: `postgres://${login}:${password}@${address}/test1`
-  });
-   pool.connect(function(err,client,done){
-    done();
-     if(err){
-       return response.status(520).send('fail'); // при неуспехи авторизации выкидываем ошибку 
-     }
-    return response.json({ data:  'connect'}) // при успехи клиент сохраняет данный логин и пароль и в дальнейшем атворизовывается по ним
-   });
-    
+app.post('/signin', (request, response) => {
+    const login = request.body.login // получаем логин от клинета из окна авторизации
+    const password = request.body.password // получаем пароль от клинета из окна авторизации
   
-  
-})
+    pool = new pg.Pool({
+      connectionString: `postgres://${login}:${password}@${address}/test1`
+    });
+    pool.connect( (err, client, done) => {
+      done();
+      if (err) {
+        return response.status(520).send('fail') // при неуспехи авторизации выкидываем ошибку
+      }
+      return response.json({ data: 'connect' }) // при успехи клиент сохраняет данный логин и пароль и в дальнейшем атворизовывается по ним
+    });
+});
 
 // Получение данных
-app.post('/', function (request, response) {
+app.post('/', (request, response) => {
   const user = request.body.user;  // получаем логин от клинета из окна авторизации
   const pass = request.body.pass; // // получаем пароль от клинета из окна авторизации
-  const filterParams = request.body.params
-  var pool;
+  const filterParams = request.body.params;
+  let pool;
   if(user && pass){
     pool = new pg.Pool({
       connectionString: `postgres://${user}:${pass}@${address}/test1`
-    });
-
+    });  
   }
 
-  // подключение к бд
   pool.connect(async function (err, client, done) {
     if (err) {
 
       // если ошибка возвращаем
       return console.error(err.message)
+    } else {
+      console.info('connected')
     }
 
     // устанавливаем параметры для фильтрации.
@@ -107,4 +107,4 @@ app.post('/', function (request, response) {
       })
     })
   })
-})
+});
